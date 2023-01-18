@@ -21,7 +21,9 @@ struct MainScrollView: View {
             .padding()
             
         }
+        .frame(width: .infinity)
         .background(.white)
+        .cornerRadius(20)
         .padding()
     }
 }
