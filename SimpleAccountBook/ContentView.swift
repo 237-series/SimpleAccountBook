@@ -15,7 +15,7 @@ enum AccountCategory:String {
     case food
     case transport
     
-    var Display: String {
+    var DisplayImoji: String {
         //"💸", "💰", "☕️", "🥘"
         switch self {
         case .saving: return "💰"
@@ -24,8 +24,24 @@ enum AccountCategory:String {
         default: return "💸"
         }
     }
+    
+    var Display: String {
+        switch self {
+        case .saving: return "돈아끼기좋은날"
+        case .drink: return "커피/음료수좋은날"
+        case .food: return "먹기좋은날"
+        default: return "돈쓰기좋은날"
+        }
+    }
 }
 
+class AccountData {
+    var type:AccountCategory = .none
+    var title:String = ""
+    var account:String = "0"
+    var date:Date = Date()
+    
+}
 
 
 struct MainScrollView: View {
