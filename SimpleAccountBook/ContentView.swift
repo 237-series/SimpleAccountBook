@@ -36,20 +36,32 @@ enum AccountCategory:String {
 }
 
 class AccountData {
-    var type:AccountCategory = .none
+    
+    var category:AccountCategory = .none
     var title:String = ""
     var account:String = "0"
     var date:Date = Date()
     
+    init(category: AccountCategory, title: String, account: String) {
+        self.category = category
+        self.title = title
+        self.account = account
+    }
+    init() {}
 }
+
+let DummyData: [AccountData] = [
+    AccountData(category: .food, title: "저녁먹었음", account: "30,000"),
+    AccountData(category: .saving, title: "2023년 1월 첫 저축", account: "100,000")
+]
 
 
 struct MainScrollView: View {
     var body: some View {
         ScrollView() {
             VStack {
-                ForEach(1..<10) {_ in
-                    AccountRow()
+                ForEach(Array(DummyData.enumerated()), id: \.offset) {idx, data in
+                    AccountRow(accountData: data)
                 }
             }
             .padding()
@@ -65,6 +77,8 @@ struct MainScrollView: View {
 }
 
 struct AccountRow: View {
+    
+    var accountData:AccountData
     
     var buttonArea: some View {
         VStack {
@@ -84,16 +98,16 @@ struct AccountRow: View {
     var body: some View {
         HStack {
             // 로고 자리 (이모지로 대체)
-            Text("💸")
+            Text(accountData.category.DisplayImoji)
                 .font(.system(size: 45))
                 .cornerRadius(0.3)
             
-            VStack {
+            VStack(alignment: .leading) {
                 //타이틀, 금액
-                Text("커피/음료수")
+                Text(accountData.title)
                     .font(.subheadline)
                     .foregroundColor(.gray)
-                Text("890,023원")
+                Text(accountData.account + "원")
                     .font(.title3)
             }
             
