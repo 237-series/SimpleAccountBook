@@ -125,12 +125,18 @@ struct TopArea: View {
     var body: some View {
         HStack { // Top Area
             Button {
-                
             } label: {
-                Text("Top Button")
+                Text("💸💸💸")
+                    .font(.system(size: 33.3))
+                    .frame(maxWidth: .infinity)
             }
-        }.padding()
+            .padding()
+        }
+        .background(.white)
+        .cornerRadius(20)
+        .padding()
     }
+    
 }
 
 struct BottomArea: View {
@@ -154,9 +160,7 @@ struct ContentView: View {
             
             VStack {
                 TopArea()
-                Spacer() // Contents Area
                 MainScrollView()
-                Spacer()
                 BottomArea()
             }
             .padding()
