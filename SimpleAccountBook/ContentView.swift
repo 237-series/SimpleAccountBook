@@ -7,6 +7,26 @@
 
 import SwiftUI
 
+enum AccountCategory:String {
+    //case 💸, 💰, ☕️, 🥘
+    case none
+    case saving //
+    case drink
+    case food
+    case transport
+    
+    var Display: String {
+        //"💸", "💰", "☕️", "🥘"
+        switch self {
+        case .saving: return "💰"
+        case .drink: return "☕️"
+        case .food: return "🥘"
+        default: return "💸"
+        }
+    }
+}
+
+
 
 struct MainScrollView: View {
     var body: some View {
