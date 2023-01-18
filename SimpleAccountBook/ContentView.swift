@@ -7,43 +7,58 @@
 
 import SwiftUI
 
+
 struct MainScrollView: View {
     var body: some View {
         ScrollView() {
             VStack {
-                ForEach(1..<100) {_ in
+                ForEach(1..<10) {_ in
                     AccountRow()
                 }
             }
+            .padding()
             .frame(maxWidth: .infinity)
+            .padding()
+            
         }
+        .background(.white)
+        .padding()
     }
 }
 
 struct AccountRow: View {
     
     var buttonArea: some View {
-        Button {
-            
-        } label: {
-            Text("+")
+        VStack {
+            Button {
+                
+            } label: {
+                Text("+")
+                    .foregroundColor(.black)
+            }
+            .frame(width: 43, height: 33)
+            .background(Color("AccountAdd"))
+            .cornerRadius(10)
         }
+        .padding()
     }
     
     var body: some View {
         HStack {
             // 로고 자리 (이모지로 대체)
             Text("💸")
-                .frame(width: 40, height: 40)
-                .background(.secondary)
-            Spacer()
+                .font(.system(size: 45))
+                .cornerRadius(0.3)
             
             VStack {
                 //타이틀, 금액
-                Text("타이틀")
-                Text("금액")
+                Text("커피/음료수")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+                Text("890,023원")
+                    .font(.title3)
             }
-            .background(.gray)
+            
             Spacer()
             
             // Button 자리
@@ -54,32 +69,46 @@ struct AccountRow: View {
     }
 }
 
+struct TopArea: View {
+    var body: some View {
+        HStack { // Top Area
+            Button {
+                
+            } label: {
+                Text("Top Button")
+            }
+        }.padding()
+    }
+}
+
+struct BottomArea: View {
+    var body: some View {
+        HStack { // Bottom Area
+            Button {
+                
+            } label: {
+                Text("Bottom")
+            }
+        }
+    }
+}
+
 struct ContentView: View {
     
     var body: some View {
-        VStack {
-            HStack { // Top Area
-                Button {
-                    
-                } label: {
-                    Text("Top Button")
-                }
-            }.padding()
+        ZStack {
+            Color.gray.ignoresSafeArea()
+                .opacity(0.2)
             
-            Spacer() // Contents Area
-            MainScrollView()
-            Spacer()
-            
-            
-            HStack { // Bottom Area
-                Button {
-                    
-                } label: {
-                    Text("Bottom")
-                }
+            VStack {
+                TopArea()
+                Spacer() // Contents Area
+                MainScrollView()
+                Spacer()
+                BottomArea()
             }
+            .padding()
         }
-        .padding()
     }
 }
 
