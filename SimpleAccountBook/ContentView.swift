@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum AccountCategory:String {
+enum AccountCategory:String, CaseIterable {
     //case 💸, 💰, ☕️, 🥘
     case none
     case saving //
@@ -60,6 +60,7 @@ let DummyData: [AccountData] = [
 
 struct MainScrollView: View {
     var body: some View {
+        
         ScrollView() {
             VStack {
                 ForEach(Array(DummyData.enumerated()), id: \.offset) {idx, data in
@@ -154,6 +155,19 @@ struct InputAccountModal: View {
                 Text("얼마나 쓰셨나요?")
                     .font(.title)
                 Spacer()
+                Button(action: {
+                
+                }) {
+                    Image(systemName: "arrow.up")
+                        .imageScale(.large)
+                        .frame(width: 40, height: 40)
+                        .foregroundColor(.white)
+                        .background(.gray)
+                        .clipShape(Circle())
+                        
+                }
+                
+                
             }
             
             TextField("금액 입력", text: $money)
