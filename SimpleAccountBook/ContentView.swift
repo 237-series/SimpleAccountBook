@@ -121,13 +121,19 @@ struct AccountRow: View {
 }
 
 struct InputAccountModal: View {
+    // Using State & Binding Model
     @Binding var isPresented: Bool
+    
+    // Using dismiss functions
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         VStack {
             Text("Modal View")
             Button {
-                isPresented = false
+//                isPresented = false
+//                dismiss.callAsFunction()
+                dismiss()
             } label: {
                 Text("Dismiss")
             }
