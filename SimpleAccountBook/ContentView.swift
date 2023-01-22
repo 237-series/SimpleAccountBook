@@ -120,16 +120,38 @@ struct AccountRow: View {
     }
 }
 
+struct InputAccountModal: View {
+    @Binding var isPresented: Bool
+    
+    var body: some View {
+        VStack {
+            Text("Modal View")
+            Button {
+                isPresented = false
+            } label: {
+                Text("Dismiss")
+            }
+
+        }
+    }
+}
+
 struct TopArea: View {
+    @State private var isShowModal = false //
+    
     var body: some View {
         HStack { // Top Area
             Button {
+                self.isShowModal = true
             } label: {
                 Text("💸💸💸")
                     .font(.system(size: 33.3))
                     .frame(maxWidth: .infinity)
             }
             .padding()
+            .sheet(isPresented: self.$isShowModal) {
+                InputAccountModal(isPresented: self.$isShowModal)
+            }
         }
         .background(.white)
         .cornerRadius(20)
@@ -151,6 +173,7 @@ struct BottomArea: View {
 }
 
 struct ContentView: View {
+    
     
     var body: some View {
         ZStack {
