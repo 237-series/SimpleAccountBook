@@ -127,18 +127,46 @@ struct InputAccountModal: View {
     // Using dismiss functions
     @Environment(\.dismiss) private var dismiss
     
-    var body: some View {
-        VStack {
-            Text("Modal View")
+    //                isPresented = false
+    //                dismiss.callAsFunction()
+    //                dismiss()
+
+    @State private var money:String = ""
+    
+    var TopButton: some View {
+        // Top Button
+        HStack {
             Button {
-//                isPresented = false
-//                dismiss.callAsFunction()
                 dismiss()
             } label: {
-                Text("Dismiss")
+                Text("돌아가기")
             }
-
-        }
+            Spacer()
+        }.padding()
+    }
+    
+    var InputArea: some View {
+        
+        VStack {
+            HStack {
+                Text("얼마나 쓰셨나요?")
+                    .font(.title)
+                Spacer()
+            }
+            
+            TextField("금액 입력", text: $money)
+                .keyboardType(.decimalPad)
+                .font(.title)
+            Spacer()
+        }.padding()
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            TopButton
+            InputArea
+            Spacer()
+        } .padding()
     }
 }
 
