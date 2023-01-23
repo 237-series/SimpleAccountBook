@@ -15,12 +15,13 @@ let DummyData: [AccountData] = [
 
 struct MainScrollView: View {
     @StateObject var dataManager:AccountDataManager = AccountDataManager.shared
+    @State var acCategory:AccountCategory = .none
 
     var body: some View {
         
         ScrollView() {
             VStack {
-                ForEach(Array(dataManager.getList().enumerated()), id: \.offset) {idx, data in
+                ForEach(Array(dataManager.getList(Category: acCategory).enumerated()), id: \.offset) {idx, data in
                     AccountRow(accountData: data)
                 }
             }
@@ -32,6 +33,7 @@ struct MainScrollView: View {
         .background(.white)
         .cornerRadius(20)
         .padding()
+        CategorySelectionArea(selectedCategory: $acCategory)
     }
 }
 
@@ -217,9 +219,31 @@ struct BottomArea: View {
     }
 }
 
+struct CategorySelectionArea: View {
+    
+    @Binding var selectedCategory:AccountCategory
+    
+    var body: some View {
+        VStack {
+            Picker("지출 종류를 골라주세요", selection: $selectedCategory) {
+                ForEach(AccountCategory.allCases, id:\.self) { category in
+                    Text(category.DisplayImoji).tag(category)
+                }
+                
+            } .onChange(of: selectedCategory, perform: { newValue in
+                
+            })
+            .pickerStyle(SegmentedPickerStyle())
+            .padding()
+        }
+        
+        .background(.white)
+        .cornerRadius(20)
+        .padding()
+    }
+}
+
 struct ContentView: View {
-    
-    
     var body: some View {
         ZStack {
             Color.gray.ignoresSafeArea()
@@ -228,7 +252,7 @@ struct ContentView: View {
             VStack {
                 TopArea()
                 MainScrollView()
-                BottomArea()
+                
             }
             .padding()
         }

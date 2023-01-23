@@ -31,12 +31,22 @@ class AccountDataManager:ObservableObject {
         ]
     }
     
-    func getList() -> [AccountData] {
+    func getList(Category acCate:AccountCategory) -> [AccountData] {
         if acDataList.isEmpty {
             return getDummyData()
         }
         
-        return acDataList
+        var returnList:[AccountData] = acDataList
+        if acCate != .none {
+            returnList = []
+            for acData in acDataList {
+                if acData.category == acCate {
+                    returnList.append(acData)
+                }
+            }
+        }
+        
+        return returnList
     }
     
     func add(AccountData acData:AccountData?) -> Bool {
