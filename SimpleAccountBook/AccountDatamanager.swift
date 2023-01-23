@@ -7,12 +7,12 @@
 
 import Foundation
 
-class AccountDataManager {
+class AccountDataManager:ObservableObject {
     static let ACCOUNT_DATA_LIST_KEY = "ACCOUNT_DATA_LIST_KEY"
     
     static let shared = AccountDataManager()
     
-    var acDataList:[AccountData] = []
+    @Published var acDataList:[AccountData] = []
     
     init() {
         if let data = UserDefaults.standard.value(forKey: AccountDataManager.ACCOUNT_DATA_LIST_KEY) as? Data {

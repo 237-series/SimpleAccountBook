@@ -14,7 +14,7 @@ let DummyData: [AccountData] = [
 ]
 
 struct MainScrollView: View {
-    @State var dataManager:AccountDataManager = AccountDataManager.shared
+    @StateObject var dataManager:AccountDataManager = AccountDataManager.shared
 
     var body: some View {
         
