@@ -13,5 +13,10 @@ class AccountDataManager {
     static let shared = AccountDataManager()
     
     
-
+    func getDummyData() -> [AccountData] {
+        return [
+            AccountData(category: .food, title: "저녁먹었음", account: "30,000"),
+            AccountData(category: .saving, title: "2023년 1월 첫 저축", account: "100,000")
+        ]
+    }
 }

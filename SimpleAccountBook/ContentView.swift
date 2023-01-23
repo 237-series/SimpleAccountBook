@@ -13,13 +13,14 @@ let DummyData: [AccountData] = [
     AccountData(category: .saving, title: "2023년 1월 첫 저축", account: "100,000")
 ]
 
-
 struct MainScrollView: View {
+    @State var dataManager:AccountDataManager = AccountDataManager.shared
+
     var body: some View {
         
         ScrollView() {
             VStack {
-                ForEach(Array(DummyData.enumerated()), id: \.offset) {idx, data in
+                ForEach(Array(dataManager.getDummyData().enumerated()), id: \.offset) {idx, data in
                     AccountRow(accountData: data)
                 }
             }
