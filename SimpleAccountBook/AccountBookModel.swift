@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AccountCategory:String, CaseIterable {
+enum AccountCategory:String, CaseIterable, Codable {
     //case 💸, 💰, ☕️, 🥘
     case none
     case saving //
@@ -35,9 +35,10 @@ enum AccountCategory:String, CaseIterable {
         default: return "돈쓰기좋은날"
         }
     }
+    
 }
 
-class AccountData {
+struct AccountData:Codable {
     
     var category:AccountCategory = .none
     var title:String = ""
@@ -49,5 +50,5 @@ class AccountData {
         self.title = title
         self.account = account
     }
-    init() {}
+//    init() {}
 }

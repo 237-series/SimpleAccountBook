@@ -20,7 +20,7 @@ struct MainScrollView: View {
         
         ScrollView() {
             VStack {
-                ForEach(Array(dataManager.getDummyData().enumerated()), id: \.offset) {idx, data in
+                ForEach(Array(dataManager.getList().enumerated()), id: \.offset) {idx, data in
                     AccountRow(accountData: data)
                 }
             }
@@ -81,6 +81,8 @@ struct AccountRow: View {
 }
 
 struct InputAccountModal: View {
+    var dataManager:AccountDataManager = AccountDataManager.shared
+    
     // Using State & Binding Model
     @Binding var isPresented: Bool
     
@@ -92,6 +94,7 @@ struct InputAccountModal: View {
     //                dismiss()
 
     @State private var money:String = ""
+    @State private var memo:String = ""
     
     var TopButton: some View {
         // Top Button
@@ -105,6 +108,12 @@ struct InputAccountModal: View {
         }.padding()
     }
     
+    func addAccountData() -> Bool {
+        let acData = AccountData(category: .none, title: "기본 타이틀", account: money)
+        let result = dataManager.add(AccountData: acData)
+        return !result
+    }
+    
     var InputArea: some View {
         
         VStack {
@@ -113,7 +122,10 @@ struct InputAccountModal: View {
                     .font(.title)
                 Spacer()
                 Button(action: {
-                
+//                    let result = addAccountData()
+                    let result = addAccountData()
+                    isPresented = result
+                    
                 }) {
                     Image(systemName: "arrow.up")
                         .imageScale(.large)
@@ -130,6 +142,12 @@ struct InputAccountModal: View {
             TextField("금액 입력", text: $money)
                 .keyboardType(.decimalPad)
                 .font(.title)
+            
+            Text("")
+            
+            TextField("메모 입력", text: $memo)
+                .font(.title)
+                
             Spacer()
         }.padding()
     }
