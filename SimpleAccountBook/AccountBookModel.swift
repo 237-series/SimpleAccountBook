@@ -15,6 +15,8 @@ enum AccountCategory:String, CaseIterable, Codable {
     case food
     case transport
     
+    var id:AccountCategory { self }
+    
     var DisplayImoji: String {
         //"💸", "💰", "☕️", "🥘"
         switch self {
@@ -47,7 +49,7 @@ struct AccountData:Codable {
     
     init(category: AccountCategory, title: String, account: String) {
         self.category = category
-        self.title = title
+        self.title = (title == "" ? category.Display : title)
         self.account = account
     }
 //    init() {}

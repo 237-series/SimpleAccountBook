@@ -94,7 +94,10 @@ struct InputAccountModal: View {
     //                dismiss()
 
     @State private var money:String = ""
+//    @State private var money = 0
     @State private var memo:String = ""
+    
+    @State private var selectedCategory:AccountCategory = .none
     
     var TopButton: some View {
         // Top Button
@@ -109,7 +112,7 @@ struct InputAccountModal: View {
     }
     
     func addAccountData() -> Bool {
-        let acData = AccountData(category: .none, title: "기본 타이틀", account: money)
+        let acData = AccountData(category: selectedCategory, title: memo, account: money)
         let result = dataManager.add(AccountData: acData)
         return !result
     }
@@ -147,7 +150,24 @@ struct InputAccountModal: View {
             
             TextField("메모 입력", text: $memo)
                 .font(.title)
+            
+            Text("")
+            
+            Picker("지출 종류를 골라주세요", selection: $selectedCategory) {
+                ForEach(AccountCategory.allCases, id:\.self) { category in
+                    Text(category.DisplayImoji).tag(category)
+                }
                 
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            Text("")
+            HStack {
+                Text("오늘은~")
+                Spacer()
+            }
+            Text(selectedCategory.Display)
+                .font(.title)
+            
             Spacer()
         }.padding()
     }
