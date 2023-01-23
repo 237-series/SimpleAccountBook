@@ -11,6 +11,8 @@
 		231DF07A2977E95E00B8F1DA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 231DF0792977E95E00B8F1DA /* ContentView.swift */; };
 		231DF07C2977E95E00B8F1DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 231DF07B2977E95E00B8F1DA /* Assets.xcassets */; };
 		231DF07F2977E95E00B8F1DA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 231DF07E2977E95E00B8F1DA /* Preview Assets.xcassets */; };
+		23C6ECEB297D30230002139E /* AccountDatamanager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C6ECEA297D30230002139E /* AccountDatamanager.swift */; };
+		23C6ECED297D31DE0002139E /* AccountBookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23C6ECEC297D31DE0002139E /* AccountBookModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		231DF0792977E95E00B8F1DA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		231DF07B2977E95E00B8F1DA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		231DF07E2977E95E00B8F1DA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		23C6ECEA297D30230002139E /* AccountDatamanager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDatamanager.swift; sourceTree = "<group>"; };
+		23C6ECEC297D31DE0002139E /* AccountBookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBookModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 			children = (
 				231DF0772977E95E00B8F1DA /* SimpleAccountBookApp.swift */,
 				231DF0792977E95E00B8F1DA /* ContentView.swift */,
+				23C6ECEC297D31DE0002139E /* AccountBookModel.swift */,
+				23C6ECEA297D30230002139E /* AccountDatamanager.swift */,
 				231DF07B2977E95E00B8F1DA /* Assets.xcassets */,
 				231DF07D2977E95E00B8F1DA /* Preview Content */,
 			);
@@ -137,7 +143,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23C6ECEB297D30230002139E /* AccountDatamanager.swift in Sources */,
 				231DF07A2977E95E00B8F1DA /* ContentView.swift in Sources */,
+				23C6ECED297D31DE0002139E /* AccountBookModel.swift in Sources */,
 				231DF0782977E95E00B8F1DA /* SimpleAccountBookApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
