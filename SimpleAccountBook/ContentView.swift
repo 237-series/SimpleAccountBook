@@ -13,6 +13,20 @@ let DummyData: [AccountData] = [
     AccountData(category: .saving, title: "2023년 1월 첫 저축", account: "100,000")
 ]
 
+
+func numberFormat(price:String)->String {
+    let numberFormatter = NumberFormatter()
+    numberFormatter.numberStyle = .decimal
+    if let intValue = Int(price) {
+        let num = NSNumber(value:intValue)
+        if let result = numberFormatter.string(from: num) {
+            return result
+        }
+    }
+    
+    return price
+}
+
 struct MainScrollView: View {
     @StateObject var dataManager:AccountDataManager = AccountDataManager.shared
     @State var acCategory:AccountCategory = .none
@@ -68,7 +82,9 @@ struct AccountRow: View {
                 Text(accountData.title)
                     .font(.subheadline)
                     .foregroundColor(.gray)
-                Text(accountData.account + "원")
+                Text(
+                    numberFormat(price: accountData.account)
+                    + "원")
                     .font(.title3)
             }
             
@@ -100,6 +116,8 @@ struct InputAccountModal: View {
     @State private var memo:String = ""
     
     @State private var selectedCategory:AccountCategory = .none
+    
+    
     
     var TopButton: some View {
         // Top Button
